@@ -2,7 +2,8 @@
 
 Signalist is a premium, real-time stock market tracking application built with **Next.js 15**, **Tailwind CSS**, and **Yahoo Finance**. It provides users with live market insights, interactive technical charts, and intelligent search capabilities.
 
-![Signalist Dashboard Mockup](public/dashboard_mockup.png) <!-- Note: User can replace this with a real screenshot -->
+<img width="1883" height="964" alt="image" src="https://github.com/user-attachments/assets/8e116cb0-0f51-4844-941a-f73ef8b27777" />
+ <!-- Note: User can replace this with a real screenshot -->
 
 ## ✨ Features
 
