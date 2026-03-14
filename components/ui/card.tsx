@@ -1,17 +1,31 @@
+"use client";
+
 import * as React from "react"
+import { motion, HTMLMotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
+  children?: React.ReactNode;
+}
+
+function Card({ className, children, ...props }: CardProps) {
   return (
-    <div
+    <motion.div
       data-slot="card"
+      whileHover={{ y: -5, scale: 1.01, rotateX: 2, rotateY: 2 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      style={{ transformStyle: "preserve-3d" }}
       className={cn(
-        "flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
+        "flex flex-col gap-6 rounded-xl border border-white/5 bg-gray-900/40 backdrop-blur-xl py-6 text-card-foreground shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-yellow-500/30 hover:shadow-[0_8px_30px_rgba(232,186,64,0.15)] transition-colors duration-300 relative overflow-hidden group",
         className
       )}
       {...props}
-    />
+    >
+      {/* Subtle top ambient glow inside the card */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {children}
+    </motion.div>
   )
 }
 

@@ -49,7 +49,7 @@ export default function StockList({ stocks, onRemove }: StockListProps) {
               <TableCell className="font-medium text-zinc-100">{stock.ticker}</TableCell>
               <TableCell className="text-zinc-400">{stock.name}</TableCell>
               <TableCell className="text-right font-medium text-zinc-100">
-                ${stock.price.toFixed(2)}
+                ₹{stock.price.toFixed(2)}
               </TableCell>
               <TableCell className="text-right">
                 <span className={`px-2 py-1 rounded-md text-sm font-medium ${

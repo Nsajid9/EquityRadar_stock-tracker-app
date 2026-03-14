@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.0.4",
+    "@google/generative-ai": "^0.24.1",
+    "@prisma/client": "^7.5.0",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-slot": "^1.2.4",
@@ -16,13 +19,17 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.36.0",
+    "inngest": "^3.52.6",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",
     "radix-ui": "^1.4.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-markdown": "^10.1.0",
     "recharts": "^3.8.0",
-    "tailwind-merge": "^3.4.0",
+    "svix": "^1.88.0",
+    "tailwind-merge": "^3.5.0",
     "yahoo-finance2": "^3.13.2"
   },
   "devDependencies": {
@@ -33,6 +40,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "prisma": "^7.5.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.4.0",
     "typescript": "^5"

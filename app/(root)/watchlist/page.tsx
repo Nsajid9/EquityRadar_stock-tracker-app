@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Star, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import PageTransition from "@/components/PageTransition";
 
 export default function WatchlistPage() {
   const [stocks, setStocks] = useState<StockQuote[]>([]);
@@ -53,6 +54,7 @@ export default function WatchlistPage() {
   };
 
   return (
+    <PageTransition>
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[70vh]">
       <div className="flex flex-col gap-2 border-b border-zinc-800 pb-6">
         <h1 className="text-3xl font-bold text-zinc-100 tracking-tight flex items-center">
@@ -80,5 +82,6 @@ export default function WatchlistPage() {
         )}
       </div>
     </div>
+    </PageTransition>
   );
 }

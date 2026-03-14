@@ -29,134 +29,121 @@ export interface NewsArticle {
 }
 
 export const MOCK_STOCKS: Record<string, StockQuote> = {
-  AAPL: {
-    ticker: "AAPL",
-    name: "Apple Inc.",
-    price: 189.32,
-    change: 2.15,
-    changePercent: 1.15,
-    marketCap: "2.9T",
+  "RELIANCE.NS": {
+    ticker: "RELIANCE.NS",
+    name: "Reliance Industries",
+    price: 2950.45,
+    change: 15.20,
+    changePercent: 0.52,
+    marketCap: "19.8T",
     peRatio: 28.5,
-    high52Week: 199.62,
-    low52Week: 165.67,
-    volume: "52.3M",
-    currencySymbol: '$'
+    high52Week: 3020.00,
+    low52Week: 2220.30,
+    volume: "8.2M",
+    currencySymbol: '₹'
   },
-  MSFT: {
-    ticker: "MSFT",
-    name: "Microsoft Corporation",
-    price: 405.12,
-    change: -1.05,
-    changePercent: -0.26,
-    marketCap: "3.0T",
-    peRatio: 35.8,
-    high52Week: 420.82,
-    low52Week: 311.55,
-    volume: "24.1M",
-    currencySymbol: '$'
-  },
-  GOOGL: {
-    ticker: "GOOGL",
-    name: "Alphabet Inc.",
-    price: 142.65,
-    change: 1.85,
-    changePercent: 1.31,
-    marketCap: "1.8T",
-    peRatio: 24.1,
-    high52Week: 153.78,
-    low52Week: 102.63,
-    volume: "31.2M",
-    currencySymbol: '$'
-  },
-  TSLA: {
-    ticker: "TSLA",
-    name: "Tesla, Inc.",
-    price: 195.43,
-    change: -4.21,
-    changePercent: -2.11,
-    marketCap: "620B",
-    peRatio: 45.2,
-    high52Week: 299.29,
-    low52Week: 152.37,
-    volume: "105.4M",
-    currencySymbol: '$'
-  },
-  AMZN: {
-    ticker: "AMZN",
-    name: "Amazon.com, Inc.",
-    price: 174.45,
-    change: 0.95,
-    changePercent: 0.55,
-    marketCap: "1.8T",
-    peRatio: 60.4,
-    high52Week: 176.82,
-    low52Week: 95.5,
-    volume: "45.1M",
-    currencySymbol: '$'
-  },
-  NVDA: {
-    ticker: "NVDA",
-    name: "NVIDIA Corporation",
-    price: 785.38,
-    change: 12.45,
-    changePercent: 1.61,
-    marketCap: "1.9T",
-    peRatio: 65.2,
-    high52Week: 823.94,
-    low52Week: 222.97,
-    volume: "68.5M",
-    currencySymbol: '$'
-  },
-  META: {
-    ticker: "META",
-    name: "Meta Platforms, Inc.",
-    price: 484.03,
-    change: -5.12,
-    changePercent: -1.05,
-    marketCap: "1.2T",
+  "TCS.NS": {
+    ticker: "TCS.NS",
+    name: "Tata Consultancy Services",
+    price: 4120.15,
+    change: -12.50,
+    changePercent: -0.30,
+    marketCap: "14.9T",
     peRatio: 32.1,
-    high52Week: 488.62,
-    low52Week: 167.66,
-    volume: "18.2M",
-    currencySymbol: '$'
+    high52Week: 4254.75,
+    low52Week: 3115.00,
+    volume: "2.1M",
+    currencySymbol: '₹'
   },
-  NFLX: {
-    ticker: "NFLX",
-    name: "Netflix, Inc.",
-    price: 587.65,
+  "HDFCBANK.NS": {
+    ticker: "HDFCBANK.NS",
+    name: "HDFC Bank Limited",
+    price: 1445.60,
     change: 8.90,
-    changePercent: 1.54,
-    marketCap: "255B",
-    peRatio: 48.7,
-    high52Week: 605.50,
-    low52Week: 285.33,
-    volume: "5.4M",
-    currencySymbol: '$'
+    changePercent: 0.62,
+    marketCap: "11.0T",
+    peRatio: 16.4,
+    high52Week: 1757.50,
+    low52Week: 1363.55,
+    volume: "18.5M",
+    currencySymbol: '₹'
   },
-  AMD: {
-    ticker: "AMD",
-    name: "Advanced Micro Devices, Inc.",
-    price: 176.52,
+  "INFY.NS": {
+    ticker: "INFY.NS",
+    name: "Infosys Limited",
+    price: 1630.90,
+    change: -5.40,
+    changePercent: -0.33,
+    marketCap: "6.8T",
+    peRatio: 26.2,
+    high52Week: 1733.00,
+    low52Week: 1215.45,
+    volume: "6.4M",
+    currencySymbol: '₹'
+  },
+  "ICICIBANK.NS": {
+    ticker: "ICICIBANK.NS",
+    name: "ICICI Bank Limited",
+    price: 1085.35,
+    change: 12.45,
+    changePercent: 1.16,
+    marketCap: "7.6T",
+    peRatio: 18.5,
+    high52Week: 1113.85,
+    low52Week: 899.00,
+    volume: "12.8M",
+    currencySymbol: '₹'
+  },
+  "SBIN.NS": {
+    ticker: "SBIN.NS",
+    name: "State Bank of India",
+    price: 765.20,
     change: 4.15,
-    changePercent: 2.41,
-    marketCap: "285B",
-    peRatio: 335.2,
-    high52Week: 184.92,
-    low52Week: 76.50,
-    volume: "82.1M",
-    currencySymbol: '$'
+    changePercent: 0.55,
+    marketCap: "6.8T",
+    peRatio: 9.2,
+    high52Week: 793.40,
+    low52Week: 501.55,
+    volume: "22.5M",
+    currencySymbol: '₹'
+  },
+  "BHARTIARTL.NS": {
+    ticker: "BHARTIARTL.NS",
+    name: "Bharti Airtel Limited",
+    price: 1215.45,
+    change: 18.70,
+    changePercent: 1.56,
+    marketCap: "6.9T",
+    peRatio: 52.4,
+    high52Week: 1238.00,
+    low52Week: 735.80,
+    volume: "4.8M",
+    currencySymbol: '₹'
+  },
+  "ITC.NS": {
+    ticker: "ITC.NS",
+    name: "ITC Limited",
+    price: 412.30,
+    change: -2.15,
+    changePercent: -0.52,
+    marketCap: "5.1T",
+    peRatio: 25.1,
+    high52Week: 499.70,
+    low52Week: 399.30,
+    volume: "15.4M",
+    currencySymbol: '₹'
   }
 };
 
 export const MOCK_TOP_MOVERS: StockQuote[] = [
-    MOCK_STOCKS["NVDA"],
-    MOCK_STOCKS["AMD"],
-    MOCK_STOCKS["AAPL"],
-    MOCK_STOCKS["GOOGL"],
-    MOCK_STOCKS["AMZN"],
-    MOCK_STOCKS["NFLX"],
-    MOCK_STOCKS["META"],
-    MOCK_STOCKS["TSLA"]
+    MOCK_STOCKS["RELIANCE.NS"],
+    MOCK_STOCKS["TCS.NS"],
+    MOCK_STOCKS["HDFCBANK.NS"],
+    MOCK_STOCKS["INFY.NS"],
+    MOCK_STOCKS["ICICIBANK.NS"],
+    MOCK_STOCKS["SBIN.NS"],
+    MOCK_STOCKS["BHARTIARTL.NS"],
+    MOCK_STOCKS["ITC.NS"]
 ];
 
 export const generateMockNews = (ticker: string) => {

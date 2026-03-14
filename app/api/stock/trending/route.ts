@@ -4,15 +4,11 @@ const yahooFinance = new YahooFinance();
 
 export async function GET() {
   try {
-    const queryOptions = { count: 10, lang: 'en-US' };
-    const result = (await yahooFinance.trendingSymbols('US', queryOptions)) as any;
-    
-    if (!result || !result.quotes || result.quotes.length === 0) {
-      return NextResponse.json({ error: "No trending symbols found" }, { status: 404 });
-    }
-
-    // Trending symbols only returns basic info, we need to fetch quotes for these to get prices/changes
-    const symbols = result.quotes.map((q: any) => q.symbol).slice(0, 10); // get top 10
+    // Trending symbols for 'IN' can be flaky in yahoo-finance2, so we manually fetch the top NSE stocks
+    const symbols = [
+      'RELIANCE.NS', 'TCS.NS', 'HDFCBANK.NS', 'INFY.NS',
+      'ICICIBANK.NS', 'SBIN.NS', 'BHARTIARTL.NS', 'ITC.NS', 'HINDUNILVR.NS', 'LT.NS'
+    ];
     
     // Fetch full quotes for trending symbols
     const quotes = (await yahooFinance.quote(symbols)) as any[];

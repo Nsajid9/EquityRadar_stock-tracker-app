@@ -4,7 +4,7 @@ const yahooFinance = new YahooFinance();
 
 export async function GET() {
   try {
-    const symbols = ['^GSPC', '^DJI', '^IXIC', '^RUT'];
+    const symbols = ['^BSESN', '^NSEI', '^NSEBANK', '^CNXIT'];
     const quotes = (await yahooFinance.quote(symbols)) as any[];
 
     if (!quotes || quotes.length === 0) {
@@ -15,10 +15,10 @@ export async function GET() {
       let name = quote.shortName || quote.longName || quote.symbol;
       
       // Map ticker symbols to readable names
-      if (quote.symbol === '^GSPC') name = 'S&P 500';
-      if (quote.symbol === '^DJI') name = 'Dow Jones';
-      if (quote.symbol === '^IXIC') name = 'Nasdaq';
-      if (quote.symbol === '^RUT') name = 'Russell 2000';
+      if (quote.symbol === '^BSESN') name = 'BSE SENSEX';
+      if (quote.symbol === '^NSEI') name = 'NIFTY 50';
+      if (quote.symbol === '^NSEBANK') name = 'NIFTY BANK';
+      if (quote.symbol === '^CNXIT') name = 'NIFTY IT';
 
       const change = quote.regularMarketChange || 0;
       return {

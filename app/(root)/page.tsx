@@ -9,8 +9,13 @@ import { Search, TrendingDown, TrendingUp, Activity, ArrowRight } from "lucide-r
 import TopMoversCarousel from "@/components/TopMoversCarousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
+import PageTransition from "@/components/PageTransition";
+import LiveStockTicker from "@/components/LiveStockTicker";
+import FlashPrice from "@/components/FlashPrice";
+import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
+  const { isLoaded, isSignedIn } = useUser();
   const router = useRouter();
   const [marketSummary, setMarketSummary] = useState<typeof MOCK_MARKET_SUMMARY>([]);
   const [topMovers, setTopMovers] = useState<StockQuote[]>([]);
@@ -31,6 +36,8 @@ export default function Home() {
     };
     fetchDashboard();
   }, []);
+
+
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,18 +60,36 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Header & Search */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-6">
-        <div>
-          <h1 className="text-3xl font-bold text-zinc-100 tracking-tight">Market Overview</h1>
-          <p className="text-zinc-500 mt-1">Real-time market insights and trending stocks.</p>
-        </div>
+    <PageTransition>
+      {/* Live Market Ticker */}
+      {!loading && topMovers.length > 0 && <LiveStockTicker stocks={topMovers} />}
+      
+      <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header & Search */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-6">
+          <div>
+            <div className="flex items-center gap-4 mb-2">
+              <span className="text-sm font-semibold text-yellow-500 tracking-widest uppercase bg-yellow-500/10 px-2 py-1 rounded-md">Signalist</span>
+              
+              {isLoaded && isSignedIn && (
+                <UserButton appearance={{ elements: { userButtonAvatarBox: "h-8 w-8 border border-white/10" } }}/>
+              )}
+              {isLoaded && !isSignedIn && (
+                <SignInButton mode="modal">
+                  <button className="text-xs font-medium text-zinc-100 bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-md transition-colors border border-white/5 shadow-sm">
+                    Sign In
+                  </button>
+                </SignInButton>
+              )}
+            </div>
+            <h1 className="text-3xl font-bold text-zinc-100 tracking-tight">Market Overview</h1>
+            <p className="text-zinc-500 mt-1">Real-time market insights and trending stocks.</p>
+          </div>
         
         <form onSubmit={handleSearch} className="relative w-full md:w-96 group">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-500 group-focus-within:text-yellow-500 transition-colors" />
           <Input 
-            placeholder="Search by ticker (e.g. AAPL)" 
+            placeholder="Search by ticker (e.g. RELIANCE.NS)" 
             className="pl-10 h-12 bg-zinc-900/50 border-zinc-800 focus-visible:ring-yellow-500/50 focus-visible:border-yellow-500 transition-all text-base rounded-xl"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -86,7 +111,9 @@ export default function Home() {
                 <Activity className="h-4 w-4 text-zinc-600" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-zinc-100">{index.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                <div className="text-2xl font-bold flex items-center">
+                  ₹<FlashPrice price={index.price} />
+                </div>
                 <div className={`text-sm mt-1 flex items-center font-medium ${index.isPositive ? 'text-green-500' : 'text-red-500'}`}>
                   {index.isPositive ? <TrendingUp className="mr-1 h-3 w-3" /> : <TrendingDown className="mr-1 h-3 w-3" />}
                   {index.change.toFixed(2)} ({index.changePercent.toFixed(2)}%)
@@ -116,6 +143,7 @@ export default function Home() {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

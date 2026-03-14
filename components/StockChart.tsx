@@ -11,7 +11,7 @@ interface StockChartProps {
   currencySymbol?: string;
 }
 
-export default function StockChart({ ticker, currencySymbol = '$' }: StockChartProps) {
+export default function StockChart({ ticker, currencySymbol = '₹' }: StockChartProps) {
   const [data, setData] = useState<ChartDataPoint[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeframe, setTimeframe] = useState<'1D' | '1W' | '1M' | '1Y'>('1D');
@@ -85,12 +85,18 @@ export default function StockChart({ ticker, currencySymbol = '$' }: StockChartP
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartDataWithSma}>
             <defs>
+              <filter id="neonGlowPositive" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#22c55e" floodOpacity="0.6"/>
+              </filter>
+              <filter id="neonGlowNegative" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#ef4444" floodOpacity="0.6"/>
+              </filter>
               <linearGradient id="colorPositive" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#22c55e" stopOpacity={0.4} />
                 <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorNegative" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.4} />
                 <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
               </linearGradient>
             </defs>
@@ -135,7 +141,8 @@ export default function StockChart({ ticker, currencySymbol = '$' }: StockChartP
               stroke={strokeColor}
               fillOpacity={1}
               fill={fillColor}
-              strokeWidth={2}
+              strokeWidth={3}
+              filter={isPositive ? "url(#neonGlowPositive)" : "url(#neonGlowNegative)"}
             />
             {showSma && (
               <Line 

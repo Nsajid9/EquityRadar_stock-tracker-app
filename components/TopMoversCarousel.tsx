@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import FlashPrice from "./FlashPrice";
 
 interface TopMoversCarouselProps {
   stocks: StockQuote[];
@@ -58,7 +59,7 @@ export default function TopMoversCarousel({ stocks }: TopMoversCarouselProps) {
                     
                     <div className="flex justify-between items-end">
                       <div>
-                        <div className="text-2xl font-bold text-zinc-100">{stock.currencySymbol || '$'}{stock.price.toFixed(2)}</div>
+                        <div className="text-2xl font-bold text-zinc-100 flex items-center">{stock.currencySymbol || '₹'}<FlashPrice price={stock.price} /></div>
                         <div className={`text-sm font-medium ${stock.change >= 0 ? "text-green-500" : "text-red-500"}`}>
                           {stock.change >= 0 ? "+" : ""}{stock.change.toFixed(2)} ({stock.changePercent.toFixed(2)}%)
                         </div>

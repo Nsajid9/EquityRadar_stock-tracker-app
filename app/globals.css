@@ -137,7 +137,11 @@
         @apply border-border outline-ring/50;
     }
     body {
-        @apply bg-gray-900 text-foreground;
+        @apply bg-[#050505] text-foreground min-h-screen relative;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(15, 237, 190, 0.05), transparent 25%),
+            radial-gradient(circle at 85% 30%, rgba(88, 98, 255, 0.05), transparent 25%);
+        background-attachment: fixed;
     }
 }
 
@@ -375,6 +379,30 @@
     }
     .alert-delete-btn {
         @apply text-gray-400 rounded-full hover:bg-red-600/15 bg-transparent cursor-pointer transition-colors;
+    }
+
+    /* 3D & Glassmorphism Utilities */
+    .glass-panel {
+        @apply bg-gray-800/40 backdrop-blur-xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+    }
+    
+    .neon-text-green {
+        text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+    
+    .neon-text-red {
+        text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+    
+    @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
+    .animate-marquee:hover {
+        animation-play-state: paused;
     }
 }
 

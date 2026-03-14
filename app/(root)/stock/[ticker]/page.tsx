@@ -11,6 +11,9 @@ import StockChart from "@/components/StockChart";
 import NewsFeed from "@/components/NewsFeed";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import PageTransition from "@/components/PageTransition";
+import FlashPrice from "@/components/FlashPrice";
+import AIInsights from "@/components/AIInsights";
 
 export default function StockDetailsPage() {
   const params = useParams();
@@ -60,6 +63,8 @@ export default function StockDetailsPage() {
     }
   };
 
+
+
   if (loading) {
     return (
       <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -91,6 +96,7 @@ export default function StockDetailsPage() {
   }
 
   return (
+    <PageTransition>
     <div className="flex flex-col gap-8 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -103,7 +109,7 @@ export default function StockDetailsPage() {
             <span className="px-2 py-1 bg-zinc-800/80 text-zinc-400 text-sm font-medium rounded-md">{stock.name}</span>
           </div>
           <div className="flex items-end gap-3 mt-3">
-            <span className="text-5xl font-bold text-zinc-100">{stock.currencySymbol || '$'}{stock.price.toFixed(2)}</span>
+            <span className="text-5xl font-bold text-zinc-100 flex items-center">{stock.currencySymbol || '₹'}<FlashPrice price={stock.price} /></span>
             <div className={`text-lg font-medium mb-1 flex items-center ${stock.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
               {stock.change >= 0 ? <TrendingUp className="mr-1 h-5 w-5" /> : <TrendingDown className="mr-1 h-5 w-5" />}
               {stock.change >= 0 ? "+" : ""}{stock.change.toFixed(2)} ({stock.changePercent.toFixed(2)}%)
@@ -130,8 +136,11 @@ export default function StockDetailsPage() {
         <StockChart ticker={stock.ticker} currencySymbol={stock.currencySymbol} />
       </Card>
 
+      {/* AI Generative Insights Section */}
+      <AIInsights ticker={stock.ticker} stockName={stock.name} />
+
       {/* Key Stats Grid */}
-      <div>
+      <div className="mt-8">
         <h2 className="text-xl font-semibold text-zinc-100 mb-4">Key Statistics</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card className="bg-zinc-950/50 border-zinc-800 backdrop-blur-sm">
@@ -157,7 +166,7 @@ export default function StockDetailsPage() {
               <CardTitle className="text-sm font-medium text-zinc-400">52-Week Range</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-lg font-bold text-zinc-100">{stock.currencySymbol || '$'}{stock.low52Week} - {stock.currencySymbol || '$'}{stock.high52Week}</div>
+              <div className="text-lg font-bold text-zinc-100">{stock.currencySymbol || '₹'}{stock.low52Week} - {stock.currencySymbol || '₹'}{stock.high52Week}</div>
             </CardContent>
           </Card>
 
@@ -177,5 +186,6 @@ export default function StockDetailsPage() {
         <NewsFeed news={news} loading={loading} />
       </div>
     </div>
+    </PageTransition>
   );
 }
